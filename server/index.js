@@ -11,6 +11,7 @@ const bannersRouter = require('./routes/banners.routes')
 const hotListRouter = require('./routes/hotList.routes')
 const newcoinsListRouter = require('./routes/newcoins.routes')
 const topgainersListRouter = require('./routes/topgainers.routes')
+const coinsslider = require('./routes/coinsslider.routes')
 
 
 // Middleware
@@ -19,7 +20,7 @@ const corsOptions = {
   optionsSuccessStatus: 200
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 
 // Database Connect
@@ -31,6 +32,7 @@ app.use('/api/v1/banners', bannersRouter)
 app.use('/api/v1/hotlists', hotListRouter)
 app.use('/api/v1/newcoins', newcoinsListRouter)
 app.use('/api/v1/topgainers', topgainersListRouter)
+app.use('/api/v1/coinsslider', coinsslider)
 
 
 app.get("/", (req, res) => {

@@ -113,6 +113,11 @@ export default class extends Component {
       hotList: [],
       topGainers: [],
       newCoins: [],
+      // Coinsslider
+      coinsslider: [],
+      coinssliderData1: [],
+      coinssliderData2: [],
+      coinssliderData3: [],
     };
 
     this.mainMarketDataFun = this.mainMarketDataFun.bind(this);
@@ -132,12 +137,15 @@ export default class extends Component {
     this.getHotList()
     this.getNewCoins()
     this.getTopgainers()
+    //coinsslider
+    this.getCoinsslider1()
+    this.getCoinsslider2()
+    this.getCoinsslider3()
   }
 
-
-
   getSliderImages() {
-    fetch(`http://localhost:8080/api/v1/banners`)
+    // fetch(`http://localhost:8080/api/v1/banners`)
+    fetch(`/api/v1/banners`)
       .then(res => res.json())
       .then((data) => {
         this.setState({
@@ -162,7 +170,8 @@ export default class extends Component {
 
   // get hot list
   getHotList() {
-    fetch(`http://localhost:8080/api/v1/hotlists`)
+    // fetch(`http://localhost:8080/api/v1/hotlists`)
+    fetch(`/api/v1/hotlists`)
       // fetch(`${baseUrl}/hotlists`)
       .then(res => res.json())
       .then((data) => {
@@ -177,7 +186,8 @@ export default class extends Component {
   // get new coins
 
   getNewCoins() {
-    fetch(`http://localhost:8080/api/v1/newcoins`)
+    // fetch(`http://localhost:8080/api/v1/newcoins`)
+    fetch(`/api/v1/newcoins`)
       // fetch(`${baseUrl}/newcoins`)
       .then(res => res.json())
       .then((data) => {
@@ -193,7 +203,8 @@ export default class extends Component {
 
   getTopgainers() {
     // fetch(`${baseUrl}/topgainers`)
-    fetch(`http://localhost:8080/api/v1/topgainers`)
+    // fetch(`http://localhost:8080/api/v1/topgainers`)
+    fetch(`/api/v1/topgainers`)
       .then(res => res.json())
       .then((data) => {
         this.setState({
@@ -202,6 +213,46 @@ export default class extends Component {
       }).catch(err => {
         console.log(err)
       })
+  }
+  async getCoinsslider1() {
+    try {
+      // const response = await fetch('http://localhost:8080/api/v1/coinsslider/1');
+      const response = await fetch('/api/v1/coinsslider/1');
+      const data = await response.json();
+
+      this.setState({
+        coinssliderData1: data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async getCoinsslider2() {
+    try {
+      // const response = await fetch('http://localhost:8080/api/v1/coinsslider/2');
+      const response = await fetch('/api/v1/coinsslider/2');
+      const data = await response.json();
+
+      this.setState({
+        coinssliderData2: data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  async getCoinsslider3() {
+    try {
+      // const response = await fetch('http://localhost:8080/api/v1/coinsslider/3');
+      const response = await fetch('/api/v1/coinsslider/3');
+      const data = await response.json();
+
+      this.setState({
+        coinssliderData3: data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async notificationDetails() {
@@ -304,6 +355,7 @@ export default class extends Component {
   }
 
   render() {
+
     return (
       <>
         <Header />
@@ -391,58 +443,20 @@ export default class extends Component {
                 slidesPerView: 5,
                 spaceBetween: 15,
               }
-            }}   >
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng1} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">ator</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng2} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">blz</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng3} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">bnb</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng4} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">bonk</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng5} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">btc</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng6} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">dash</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng7} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">dent</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng8} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">fil</h3>
-              </div>
-            </SwiperSlide>
+            }}>
+
+            {this.state.coinssliderData1 && this.state.coinssliderData1.map(img => (
+              <SwiperSlide>
+                <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
+                  <img src={img.symbolImage} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
+                  <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">{img.name}</h3>
+                </div>
+              </SwiperSlide>
+            ))}
+
           </Swiper>
           <Swiper
-            autoplay={{ delay: 500 }}
+            autoplay={{ delay: 700 }}
             spaceBetween={10}
             slidesPerView={3}
             loop={true}
@@ -456,64 +470,20 @@ export default class extends Component {
                 slidesPerView: 5,
                 spaceBetween: 15,
               }
-            }}   >
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng10} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">ew</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng11} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">eth</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng12} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">zec</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng13} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">xrp</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng14} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">usdt</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng15} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">qkc</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng16} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">mtl</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng17} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">lsk</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng18} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">fil</h3>
-              </div>
-            </SwiperSlide>
+            }}>
+
+            {this.state.coinssliderData2 && this.state.coinssliderData2.map(img => (
+              <SwiperSlide>
+                <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
+                  <img src={img.symbolImage} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
+                  <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">{img.name}</h3>
+                </div>
+              </SwiperSlide>
+            ))}
+
           </Swiper>
           <Swiper
-            autoplay={{ delay: 900 }}
+            autoplay={{ delay: 700 }}
             spaceBetween={10}
             slidesPerView={3}
             loop={true}
@@ -527,55 +497,17 @@ export default class extends Component {
                 slidesPerView: 5,
                 spaceBetween: 15,
               }
-            }}   >
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng19} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">lsk</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng20} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">ator</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng21} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">mtl</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng22} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">blz</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng23} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">bnb</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng24} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">qkc</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng25} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">bonk</h3>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
-                <img src={iconPng26} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
-                <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">usdt</h3>
-              </div>
-            </SwiperSlide>
+            }}>
+
+            {this.state.coinssliderData3 && this.state.coinssliderData3.map(img => (
+              <SwiperSlide>
+                <div className="flex justify-center items-center sm:sl-py-2.5 sl-py-1.5 sm:sl-px-4 sl-px-2 md:rounded-3xl rounded-xl bg-teal-700 border border-teal-900 xl:sl-mb-9 md:sl-mb-5 sl-mb-3">
+                  <img src={img.symbolImage} alt="" className="lg:w-10 sm:w-8 w-6 lg:h-10 sm:h-8 h-6 rounded-full" />
+                  <h3 className="uppercase lg:text-2xl md:text-xl text-base md:sl-ml-4 sl-ml-2">{img.name}</h3>
+                </div>
+              </SwiperSlide>
+            ))}
+
           </Swiper>
         </section>
 
@@ -622,7 +554,7 @@ export default class extends Component {
                 <h3 className="border-l-4 border-teal-400 pl-2 font-semibold">Hot List</h3>
                 <ul className="md:space-y-4 space-y-2 md:mt-6 mt-4">
                   {
-                    this.state.hotList.slice(0, 5).map((lis) => (
+                    this.state.hotList.slice(-5).map((lis) => (
                       <a href={lis.link} target="_blank" key={lis._id}>
                         <li className="flex items-center justify-between">
                           <div className="flex items-center space-x-2">
